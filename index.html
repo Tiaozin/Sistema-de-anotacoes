@@ -8,27 +8,28 @@
 </head>
 
 <style>
-    *{
+    * {
         margin: 0;
         padding: 0;
     }
-    .addAnotacao{
+
+    .addAnotacao {
         padding: 5px;
-        width: max-content;
         background-color: antiquewhite;
-        text-align: center;
         /* border: 2px solid black; */
         border-radius: 5px;
 
     }
-    .addAnotacao input{
+
+    .addAnotacao input {
         width: 200px;
     }
-    .addAnotacao h1{
-        text-align: center;
+
+    .addAnotacao h1 {
         font-size: 30px;
     }
-    .addAnotacao button{
+
+    .addAnotacao button {
         margin: 10px;
         padding: 10px;
         background-color: burlywood;
@@ -39,12 +40,13 @@
     <main>
         <div class="addAnotacao">
             <h1>Anotação</h1>
-            <label for="tituloAnotacao">Título</label>
-            <input id="tituloAnotacao" placeholder="Digite o título da anotação">
-            <br>
-            <label for="descricaoAnotacao">Descrição</label>
-            <input id="descricaoAnotacao" placeholder="Digite a descrição da anotação">
-            <br>
+            <div class="titulo"><label for="tituloAnotacao">Título</label>
+                <input id="tituloAnotacao" placeholder="Digite o título da anotação">
+            </div>
+            <div class="descricao"><label for="descricaoAnotacao">Descrição</label>
+                <input id="descricaoAnotacao" placeholder="Digite a descrição da anotação">
+            </div>
+
             <button onclick="adicionar()">Adicionar</button>
         </div>
         <ul id="lista"></ul>
