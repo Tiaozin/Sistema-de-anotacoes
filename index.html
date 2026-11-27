@@ -7,10 +7,87 @@
     <title>Sistema de Anotações</title>
 </head>
 
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    .addAnotacao{
+        padding: 5px;
+        width: max-content;
+        background-color: antiquewhite;
+        text-align: center;
+        /* border: 2px solid black; */
+        border-radius: 5px;
+
+    }
+    .addAnotacao input{
+        width: 200px;
+    }
+    .addAnotacao h1{
+        text-align: center;
+        font-size: 30px;
+    }
+    .addAnotacao button{
+        margin: 10px;
+        padding: 10px;
+        background-color: burlywood;
+    }
+</style>
+
 <body>
-    <input id="tarefa" placeholder="Digite uma tarefa">
-    <button onclick="adicionar()">Adicionar</button>
-    <ul id="lista"></ul>
+    <main>
+        <div class="addAnotacao">
+            <h1>Anotação</h1>
+            <label for="tituloAnotacao">Título</label>
+            <input id="tituloAnotacao" placeholder="Digite o título da anotação">
+            <br>
+            <label for="descricaoAnotacao">Descrição</label>
+            <input id="descricaoAnotacao" placeholder="Digite a descrição da anotação">
+            <br>
+            <button onclick="adicionar()">Adicionar</button>
+        </div>
+        <ul id="lista"></ul>
+    </main>
+    <script>
+        // function obterTarefas() {
+        //     const dados =
+        //         localStorage.getItem("tarefas");
+        //     return dados ? JSON.parse(dados) : [];
+        // }
+
+        // function adicionar() {
+        //     const campo = document.querySelector("#tarefa");
+        //     const tarefa = campo.value.trim();
+        //     if (tarefa === "") return;
+        //     const tarefas = obterTarefas();
+        //     tarefas.push(tarefa);
+        //     localStorage.setItem("tarefas",
+        //         JSON.stringify(tarefas));
+        //     campo.value = "";
+        //     listar();
+        // }
+
+        // function listar() {
+        //     const lista =
+        //         document.querySelector("#lista");
+        //     lista.innerHTML = "";
+        //     obterTarefas().forEach(tarefa => {
+        //         const item = document.createElement("li");
+        //         item.textContent = tarefa;
+        //         lista.appendChild(item);
+        //     });
+        // }
+        // listar(); // Executa ao abrir a página
+
+
+        const anotacao = {
+            id: Date.now(),
+            titulo: "Estudar JavaScript",
+            descricao: "Revisar Storage e JSON"
+        };
+
+    </script>
 </body>
 
 </html>
