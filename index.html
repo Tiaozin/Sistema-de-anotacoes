@@ -11,33 +11,99 @@
     * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        padding: 20px;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
     }
 
     .addAnotacao {
-        padding: 5px;
+        display: flex;
+        align-items: center;
+        padding: 14px 18px;
         background-color: antiquewhite;
-        /* border: 2px solid black; */
-        border-radius: 5px;
+        border: 1px solid #e3d2b9;
+        border-radius: 8px;
+        gap: 20px;
+    }
 
+    .addAnotacao .titulo,
+    .addAnotacao .descricao {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .addAnotacao label {
+        font-size: 14px;
+        font-weight: bold;
     }
 
     .addAnotacao input {
         width: 200px;
+        padding: 7px 10px;
+        border: 1px solid #d2be9e;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+
+    .addAnotacao input:focus {
+        outline: 2px solid burlywood;
+        border-color: transparent;
     }
 
     .addAnotacao h1 {
         font-size: 30px;
+        margin-right: 6px;
     }
 
     .addAnotacao button {
-        margin: 10px;
-        padding: 10px;
+        margin: 4px;
+        padding: 9px 16px;
         background-color: burlywood;
+        border: 1px solid #b8905e;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .addAnotacao button:hover {
+        background-color: #c89d66;
+    }
+
+    main {
+        flex: 1;
+        border: 2px solid black;
+        margin-top: 10px;
+    }
+
+    #lista {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        max-width: 100%;
+    }
+
+    li {
+        margin-top: 10px;
+        margin-left: 10px;
+        background-color: antiquewhite;
+        max-width: auto;
+        list-style: none;
+        padding: 10px;
+        border-radius: 0 8px 8px 8px;
+        text-align: center;
     }
 </style>
 
 <body>
-    <main>
+    <header>
         <div class="addAnotacao">
             <h1>Anotação</h1>
             <div class="titulo"><label for="tituloAnotacao">Título</label>
@@ -49,46 +115,54 @@
 
             <button onclick="adicionar()">Adicionar</button>
         </div>
+
+    </header>
+    <main>
         <ul id="lista"></ul>
     </main>
     <script>
-        // function obterTarefas() {
-        //     const dados =
-        //         localStorage.getItem("tarefas");
-        //     return dados ? JSON.parse(dados) : [];
-        // }
+        // let contador = 1;
+        // localStorage.clear();
+        // window.location.reload();
 
-        // function adicionar() {
-        //     const campo = document.querySelector("#tarefa");
-        //     const tarefa = campo.value.trim();
-        //     if (tarefa === "") return;
-        //     const tarefas = obterTarefas();
-        //     tarefas.push(tarefa);
-        //     localStorage.setItem("tarefas",
-        //         JSON.stringify(tarefas));
-        //     campo.value = "";
-        //     listar();
-        // }
+        function obterAnotacoes() {
+            const dados = localStorage.getItem("anotacoes");
+            return dados ? JSON.parse(dados) : [];
+        }
 
-        // function listar() {
-        //     const lista =
-        //         document.querySelector("#lista");
-        //     lista.innerHTML = "";
-        //     obterTarefas().forEach(tarefa => {
-        //         const item = document.createElement("li");
-        //         item.textContent = tarefa;
-        //         lista.appendChild(item);
-        //     });
-        // }
-        // listar(); // Executa ao abrir a página
+        function adicionar() {
+            const titulo = document.getElementById("tituloAnotacao");
+            const descricao = document.getElementById("descricaoAnotacao");
 
+            if (titulo.value.trim() === "" || descricao.value.trim() === "") return;
 
-        const anotacao = {
-            id: Date.now(),
-            titulo: "Estudar JavaScript",
-            descricao: "Revisar Storage e JSON"
-        };
+            const novaAnotacao = {
+                // resultados bassou vai disputar a Christian de Nova estanumero: contador,
+                id: Date.now(),
+                titulo: titulo.value.trim(),
+                descricao: descricao.value.trim()
+            };
 
+            const anotacoes = obterAnotacoes();
+            anotacoes.push(novaAnotacao);
+            localStorage.setItem("anotacoes", JSON.stringify(anotacoes));
+            // contador = contador + 1;
+            titulo.value = "";
+            descricao.value = "";
+            listar();
+        }
+
+        function listar() {
+            const lista = document.querySelector("#lista");
+            lista.innerHTML = "";
+            obterAnotacoes().forEach(anotacao => {
+                const item = document.createElement("li");
+                item.innerHTML = `<strong>${anotacao.titulo}</strong><br>${anotacao.descricao}`;
+                lista.appendChild(item);
+            });
+        }
+
+        listar();
     </script>
 </body>
 
